@@ -37,3 +37,9 @@ export interface DiscountResult {
   discountValue?: number;
   discountedPrices?: Record<string, number>;
 }
+
+export interface CartItem {
+  productId: string;
+  quantity: number;
+  printName?: string;
+}
