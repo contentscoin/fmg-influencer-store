@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getAllSlugs, INFLUENCERS } from "@/lib/data";
 import type { InfluencerProfile } from "@/lib/types";
 
@@ -80,15 +81,24 @@ export default function HomePage() {
                 href={`/${slug}`}
                 className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md hover:border-violet-100 transition-all group"
               >
-                {/* Gradient Banner */}
-                <div className="h-20 bg-gradient-to-r from-gray-800 to-violet-800 relative">
-                  <div className="absolute -bottom-6 left-5">
+                {/* Product Image Banner */}
+                <div className="h-24 bg-gradient-to-r from-gray-800 to-violet-800 relative overflow-hidden">
+                  {inf.products[0] && (
+                    <Image
+                      src={inf.products[0].imageUrl}
+                      alt={inf.name}
+                      fill
+                      className="object-cover opacity-60"
+                      sizes="(max-width: 512px) 100vw, 512px"
+                    />
+                  )}
+                  <div className="absolute -bottom-6 left-5 z-10">
                     <div className="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center text-xl font-bold text-violet-600 ring-2 ring-white">
                       {inf.name.charAt(0)}
                     </div>
                   </div>
                   {hasDiscount && (
-                    <div className="absolute top-3 right-3 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                    <div className="absolute top-3 right-3 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full z-10">
                       할인코드 적용 가능
                     </div>
                   )}

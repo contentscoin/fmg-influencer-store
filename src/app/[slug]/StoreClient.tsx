@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import Image from "next/image";
 import type {
   InfluencerProfile,
   StoreProduct,
@@ -454,20 +455,15 @@ function ProductCard({
       }`}
     >
       <div className="flex">
-        {/* Product Image Placeholder */}
-        <div className="relative w-32 h-32 bg-gradient-to-br from-gray-50 to-gray-100 flex-shrink-0 flex items-center justify-center">
-          <div className="text-center">
-            <span className="text-3xl block">
-              {product.tier === "signature"
-                ? "⛳"
-                : product.tier === "premium"
-                  ? "🏌️"
-                  : "🎁"}
-            </span>
-            <span className="text-[9px] text-gray-400 mt-1 block">
-              {product.tier === "luckypack" ? "랜덤" : "골프볼"}
-            </span>
-          </div>
+        {/* Product Image */}
+        <div className="relative w-32 h-32 bg-gray-50 flex-shrink-0 overflow-hidden">
+          <Image
+            src={product.imageUrl}
+            alt={product.name}
+            fill
+            className="object-cover"
+            sizes="128px"
+          />
           {isOutOfStock && (
             <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
               <span className="text-white text-xs font-bold">품절</span>
